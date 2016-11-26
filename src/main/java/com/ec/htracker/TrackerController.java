@@ -11,6 +11,7 @@ public class TrackerController {
     public String hello(Model model, @RequestParam(value="name", required=false, defaultValue="Edip") String name) {
             	
     	String surname = "Çilli";
+    	String userName = "";
     	
     	model.addAttribute("name", name);
     	model.addAttribute("surname", surname);
