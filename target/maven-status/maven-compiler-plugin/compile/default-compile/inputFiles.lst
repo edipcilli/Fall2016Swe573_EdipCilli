@@ -1,4 +1,7 @@
 D:\Projects\healthtracker\src\main\java\com\ec\htracker\TrackerController.java
 D:\Projects\healthtracker\src\main\java\com\ec\htracker\services\UserLoginService.java
-D:\Projects\healthtracker\src\main\java\com\ec\htracker\Model\User.java
+D:\Projects\healthtracker\src\main\java\com\ec\htracker\SignUpController.java
+D:\Projects\healthtracker\src\main\java\com\ec\htracker\model\UserRowMapper.java
+D:\Projects\healthtracker\src\main\java\com\ec\htracker\model\User.java
+D:\Projects\healthtracker\src\main\java\com\ec\htracker\services\UserSignUpService.java
 D:\Projects\healthtracker\src\main\java\com\ec\htracker\WebApplication.java

@@ -7,9 +7,6 @@
     <title>Hello</title>
 </head>
 <body>
-    Hello ${name}
-    
-    Soyadin ${surname}
     
     <form:form action="loginsuccess" modelAttribute="user">
 				<!-- to display error message from action method if any -->
@@ -24,7 +21,11 @@
 				<input type="submit" value="Login" />
 	</form:form>
     
+    <form:form action="gotoSignUpPage">
+				<!-- to display error message from action method if any -->
+				<input type="submit" value="SignUp" />
+	</form:form>
     
-    
+     
 </body>
 </html>
