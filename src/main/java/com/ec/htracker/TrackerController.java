@@ -49,9 +49,6 @@ public class TrackerController {
 		if (user != null && user.getId() > 0) {
 			model.addAttribute("user", user);
 
-			int remaining = user.getGoalcl() - user.getFoodcl() + user.getExercisecl();
-			model.addAttribute("remaining", remaining);
-
 			return "main";
 		} else {
 			return "home";
@@ -61,16 +58,15 @@ public class TrackerController {
 
 	@RequestMapping("/gotoSignUpPage")
 	public String gotoSignUpPageAction(@Valid @ModelAttribute("user") User user, Model model) {
-
+		System.out.println("SİGNUPA GİDİYEM");	
 		model.addAttribute("user", new User());
 
-		return "signup";
-	}
+		return "signup";	}
 
 	@RequestMapping("/SignUpSuccess")
 	public String doSignUp(@Valid @ModelAttribute("user") User user, Model model) {
 
-		System.out.println(user.getUserName());
+		System.out.println(user.getUserName());		
 		user = userLoginService.signUp(user);
 
 		model.addAttribute("user", user);

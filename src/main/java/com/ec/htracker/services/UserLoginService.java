@@ -1,6 +1,7 @@
 package com.ec.htracker.services;
 
 import java.util.Iterator;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.ec.htracker.model.User;
 import com.ec.htracker.model.UserRowMapper;
-
+import java.util.Date;
 @Service
 public class UserLoginService {
 	private final JdbcTemplate jdbcTemplate;
@@ -39,9 +40,27 @@ public class UserLoginService {
 	public User signUp(User user) {
 
 		User newUser = new User();
+//hesaplamaları da yapıp öyle oluşturalım kaydı. BMI değerleri ve günlük harcanması gereken kalori değerleri hesaplanacak.
+		double currentbmi = (user.getCurrentweight() / (user.getHeight() * user.getHeight())) * 10000;
+		user.setCurrentBMI(currentbmi);
+		double targetbmi = (user.getGoalweight() / (user.getHeight() * user.getHeight())) * 10000;
+		user.setGoalBMI(targetbmi);
+		
+		Date targetdate = user.getGoaldate();
+		@SuppressWarnings("deprecation")
+		int totaldays = targetdate.getYear() * 365 + targetdate.getMonth() * 30 + targetdate.getDay();
+		
+		@SuppressWarnings("deprecation")
+		Date currentday = new Date();
+		int currentdaystotal = currentday.getYear() * 365 + currentday.getMonth() * 30 + currentday.getDay() ;
 
-		int userId = jdbcTemplate.update("INSERT INTO users(username, password) VALUES(?,?)", user.getUserName(),
-				user.getPassword());
+//günlük alınması gereken kalori miktarı. Bir kilo vermek 7400 kalori.  ortalama günlük kalori 2500.
+		int dailycaloriestotake = 2500 - (int)(((user.getCurrentweight()- user.getGoalweight()) * 7400) / (totaldays - currentdaystotal));
+		
+		
+		System.out.println("signup yapacik");
+		int userId = jdbcTemplate.update("INSERT INTO users(username, password, currentweight,height,dateofbirth,goalweight,goaldate,notes,currentBMI,goalBMI,dailycalory) VALUES(?,?,?,?,?,?,?,?,?,?,?)", user.getUserName(),
+				user.getPassword(),user.getCurrentweight(), user.getHeight(),user.getDateofbirth(),user.getGoalweight(),user.getGoaldate(),user.getNotes(),user.getCurrentBMI(),user.getGoalBMI(),dailycaloriestotake);
 		System.out.println("Kullanıcı id: " + userId);
 
 		if (userId > 0) {

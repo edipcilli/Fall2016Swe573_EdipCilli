@@ -23,6 +23,50 @@
 			</tr>
 		</table>
 
+		<table>
+			<tr>
+				<td>Weight:</td>
+				<td><form:input path="currentweight" /></td>
+				<td>KG</td>
+				
+			</tr>
+			<tr>
+		        <td>Goal Weight:</td>
+				<td><form:input path="goalweight" /></td>
+				<td>KG</td>
+			</tr>
+			<tr>
+				<td>Height:</td>
+				<td><form:input path="height" /></td>
+				<td>CM</td>
+			</tr>
+		    <tr>
+				<td>Date of birth:</td>
+				<td><form:input type="date" path="dateofbirth" /></td>
+			</tr>
+            <tr>
+				<td>Goal date:</td>
+				<td><form:input type="date" path="goaldate" /></td>
+			</tr>
+
+		    <tr>
+				<td>Notes:</td>
+				<td><form:input path="notes" /></td>
+
+			</tr>
+		</table>
+
+	    <table>
+			<tr>
+				<td>Current BMI:</td>
+				<td><form:label path="currentBMI" /></td>
+			</tr>
+			<tr>
+				<td>goal BMI:</td>
+				<td><form:label path="goalBMI" /></td>
+			</tr>
+		</table>
+
 
 		<input type="submit" value="Save" />
 	</form:form>

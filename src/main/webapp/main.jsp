@@ -40,15 +40,6 @@
 		<hr />
 		<table>
 			<tr>
-				<td>${user.goalcl}</td>
-				<td>-</td>
-				<td>${user.foodcl}</td>
-				<td>+</td>
-				<td>${user.exercisecl}</td>
-				<td>=</td>
-				<td>${remaining}</td>
-			</tr>
-			<tr>
 				<td>Goal</td>
 				<td></td>
 				<td>Food</td>
