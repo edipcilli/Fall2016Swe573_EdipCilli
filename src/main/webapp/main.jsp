@@ -39,6 +39,15 @@
 		<h3>TODAY</h3>
 		<hr />
 		<table>
+	        <tr>
+				<td>${user.dailycalory}</td>
+				<td>-</td>
+				<td>${userinfo.foodcl}</td>
+				<td>+</td>
+				<td>${userinfo.exercisecl}</td>
+				<td>=</td>
+				<td>${userinfo.remainingcl}</td>
+			</tr>
 			<tr>
 				<td>Goal</td>
 				<td></td>
@@ -52,6 +61,35 @@
 		<hr />
 	</div>
 
+<div style="align: center">
 
+		<h3>FOODS</h3>
+		<hr />
+		<table>
+		    <tr>
+			<td><form:form action="gotoAddFoodPage" modelAttribute="food">
+					<input type="submit" value="Add Food" />
+				</form:form></td>
+			</tr>	       
+			
+		</table>
+		<hr />
+	</div>
+	
+	<div style="align: center">
+
+		<h3>EXERCISES</h3>
+		<hr />
+		<table>
+		    <tr>
+			<td><form:form action="gotoAddExercisePage" modelAttribute="user">
+					<input type="submit" value="Add Exercise" />
+				</form:form></td>
+			</tr>	       
+			
+		</table>
+		<hr />
+	</div>
+	
 </body>
 </html>

@@ -16,6 +16,15 @@ public class User {
 	private double currentBMI;
 	private double goalBMI;
 	private int dailycalory;
+	private String gender;
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
 	public double getCurrentweight() {
 		return currentweight;
@@ -112,6 +121,17 @@ public class User {
 	public void setDailycalory(int dailycalory) {
 		this.dailycalory = dailycalory;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", currentweight="
+				+ currentweight + ", height=" + height + ", dateofbirth=" + dateofbirth + ", goalweight=" + goalweight
+				+ ", goaldate=" + goaldate + ", notes=" + notes + ", currentBMI=" + currentBMI + ", goalBMI=" + goalBMI
+				+ ", dailycalory=" + dailycalory + ", gender=" + gender + "]";
+	}
+
+	
+
 
 	
 

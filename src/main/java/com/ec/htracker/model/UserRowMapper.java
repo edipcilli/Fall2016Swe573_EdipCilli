@@ -25,7 +25,7 @@ public class UserRowMapper implements RowMapper<User> {
         user.setCurrentBMI(rs.getDouble("currentBMI"));
         user.setGoalBMI(rs.getDouble("goalBMI"));
         user.setDailycalory(rs.getInt("dailycalory"));
-
+        user.setGender(rs.getString("gender"));
 		return user;
 	}
 
