@@ -1,15 +1,22 @@
 package com.ec.htracker.services;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Service;
 
 import com.ec.htracker.model.User;
 import com.ec.htracker.model.UserInfo;
-import com.ec.htracker.model.UserRowMapper;
 import com.ec.htracker.model.UserInfoRowMapper;
+import com.ec.htracker.model.UserRowMapper;
+
 @Service
 public class UserLoginService {
 	private final JdbcTemplate jdbcTemplate;
@@ -105,6 +112,40 @@ public class UserLoginService {
 		System.out.println(userinf.getCalcday());
 		return userinf;
 
+	}
+	
+	public UserInfo addFoodToDB(int userId, String ndbno, int energy){
+		Date dt = new Date();
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+		String currentTime = sdf.format(dt);
+		
+		UserInfo userinf = new UserInfo();
+		String sql = "select * from userinfo where userid ='" + userId + "'";
+		userinf = jdbcTemplate.queryForObject(sql, new UserInfoRowMapper());
+		String updatedNdbno;
+		int updatedEnergy;
+		if(!userinf.getNdbno().isEmpty()){
+			updatedNdbno = userinf.getNdbno() + "," + ndbno;
+		}
+		else{
+			updatedNdbno = ndbno;
+		}
+		updatedEnergy = userinf.getFoodcl() + energy;
+		int success = jdbcTemplate.update("UPDATE userinfo SET ndbno = '"+ updatedNdbno + "', foodcl = '" + updatedEnergy +"'  WHERE userid = '"+ userId + "';");
+		
+		UserInfo userinf2 = new UserInfo();
+		String sql2 = "select * from userinfo where userid ='" + userId + "'";
+		userinf2 = jdbcTemplate.queryForObject(sql2, new UserInfoRowMapper());
+		return userinf2;
+	}
+	
+	public UserInfo getHistory(int userId, String date){
+		String sql = "select * from userinfo where userid ='" + userId + "' AND calcday = '" + date +"';";
+		UserInfo userinf = new UserInfo();
+		userinf = jdbcTemplate.queryForObject(sql, new UserInfoRowMapper());
+		
+		return userinf;
+		
 	}
 	
 	
